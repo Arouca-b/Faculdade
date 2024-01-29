@@ -1,0 +1,21 @@
+Escreva("Digite o primeiro valor: ");
+Leia(a);
+Escreva("Digite o segunda valor: ");
+Leia(b);
+Escreva("Digite o terceiro valor: ");
+Leia(c);
+
+se ((b+c)>a)
+{
+    se (a==b && b==c)
+    {
+        printf("Triângulo: Equilátero");
+    }senao se (a!=b && b!=c && a!=c)
+    {
+        printf("Triângulo: Escaleno");
+    }senao{
+        printf("Triângulo: Isósceles");
+    }
+}senao{
+    printf("Não é um triângulo!!");
+}

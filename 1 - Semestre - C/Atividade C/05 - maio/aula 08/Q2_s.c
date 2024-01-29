@@ -1,0 +1,43 @@
+/*Receber 4 notas de um aluno, calcular média e
+informar situação: passou se 7 ou mais, abaixo de 3
+está reprovado sem direito a final com todos os 3
+condicionais*/
+
+#include <stdio.h>
+
+int main(){
+    float media, nota1, nota2, nota3, nota4;
+
+    printf("Insira a primeira nota do aluno: ");
+    scanf("%f", &nota1);
+    printf("Insira a segunda nota do aluno: ");
+    scanf("%f", &nota2);
+    printf("Insira a terceira nota do aluno: ");
+    scanf("%f", &nota3);
+    printf("Insira a quarta nota do aluno: ");   
+    scanf("%f", &nota4);
+
+    media = (nota1 + nota2 + nota3 + nota4)/4;
+    printf("\n\t\tMédia: %.1f", media);
+
+    switch ((int) media)
+    {
+    case 10:
+    case 9:
+    case 8:
+    case 7:
+        printf("\n\t*******APROVADO*******\n");
+        break;
+    case 6:
+    case 5:
+    case 4:
+    case 3:
+        printf("\n\t*******FINAL*******\n");
+        break;
+    case 2:
+    case 1:
+    case 0: 
+        printf("\n\t*******REPROVADO*******\n");
+        break;
+    }
+}

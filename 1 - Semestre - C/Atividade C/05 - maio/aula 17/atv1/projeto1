@@ -1,0 +1,36 @@
+Início
+Inteiro: i, col, limite = 0, diferenca;
+Real: media = 0;
+Escreva (“Digite o limite para ruído na imagem: ”);
+Leia (limite);
+Enquanto (limite < 0 || limite>255) {
+    Escreva (“Valor invalido para o limite. Digite novamente: ”);
+    Leia (limite);
+}
+Para (i = 0, i <= 2, i++) faca {
+    Para (col = 0, col <= 2, col++) faca {
+        
+        q_vizinhos = (i-1 >= 0 && col-1 >= 0) + (i-1 >= 0) + (i-1 >= 0 && col+1 <= 2) + (col-1 >= 0) + (col+1 <= 2) + (i+1 >= 2 && col-1<=0) + (i+1<=2) + (i+1 <= 2 && col+1<=2); 
+
+        media = {((i-1 >= 0 && col-1 >= 0) * A(i-1, col-1)) +
+                ((i-1 >= 0) * A(i-1, col)) + 
+                ((i-1 >= 0 && col+1 <= 2)*A(i-1, col+1)) + 
+                ((col-1 >= 0)*A(i, col-1)) + 
+                ((col+1 <= 2)*A(i, col+1)) + 
+                ((i+1 >= 2 && col-1<=0)*A(i+1, col-1)) + 
+                ((i+1<=2)*A(i+1, col)) + 
+                ((i+1 <= 2 && col+1<=2)*A(i+1, col+1))} / q_vizinhos;
+            
+        diferenca <- media - A(i,col);
+        Se (diferenca > limite) então {
+        A(i,col) = media;
+      }
+    }
+}
+Para (i = 0, i <= 2, i++) faca {
+    Para (col = 0, col <= 2, col++) faca {
+        Escreva( A(i,col ));
+    }
+    Escreva("\n");
+}
+Fim

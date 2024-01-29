@@ -1,0 +1,6 @@
+Escreva("Insira a cotação do dolar hoje: ");
+leia(dolar);
+Escreva("Insira a quantidade de dolares que você tem: ");
+leia(q);
+conversão = dolar * q;
+Escreva("você tem R$" + conversão + " em dolar!");

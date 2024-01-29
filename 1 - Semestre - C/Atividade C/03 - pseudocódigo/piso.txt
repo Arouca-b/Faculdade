@@ -1,0 +1,8 @@
+Escreva("Insira o valor do forro por metro²: R$ ");
+leia(valor);
+Escreva("Digite o comprimento da sala: ");
+leia(comp);
+Escreva("Digite a largura da sala: ");
+leia(lar);
+valor_Cliente = valor * (comp * lar);
+Escreva("valor do forro para a sala: R$ " + valor_Cliente);

@@ -1,0 +1,9 @@
+Escreva("Insira um valor para a: ");
+leia(a);
+Escreva("Insira um valor para b: ");
+leia(b);
+invert = a;
+a = b;
+b = invert;
+Escreva("o valor para a: " + a);
+Escreva("o valor para b: " + b);

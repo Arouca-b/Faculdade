@@ -1,0 +1,6 @@
+Escreva("Insira a sua altura(m): ");
+leia(altura);
+Escreva("Insira seu peso: ");
+leia(peso);
+imc = peso / (altura**2);
+Escreva("Seu IMC é: " + imc);

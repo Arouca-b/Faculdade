@@ -1,0 +1,11 @@
+Escreva("Digite dois números: ");
+leia(num1);
+leia(num2);
+soma = num1 + num2;
+sub = num1 - num2;
+div = num1/num2;
+mul = num1 * num2;
+Escreva("A soma dos números é: " + soma);
+Escreva("A subtração dos números é: " + sub);
+Escreva("A divisão dos números é: " + div);
+Escreva("A multiplicação dos números é: " + mul);

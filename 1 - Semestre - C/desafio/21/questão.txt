@@ -1,0 +1,57 @@
+1. Na teoria dos sistemas, define-se como elemento minimax de uma matriz, o menor elemento de uma linha onde se encontra o maior elemento da matriz. Faça um programa que leia uma matriz A(5,5), imprima-a e imprima o seu elemento minimax, juntamente com a sua posição (linha e coluna)
+2. Escreva um programa que pergunte um número ao usuário que deve estar entre 2 a 10, e leia este número validando-o. Em seguida gere e imprima uma matriz quadrada do tamanho do número lido, com os seguintes valores: 0 para a diagonal principal, 1 nas bordas e o restante com 2
+
+
+3. Escreva um programa que conte o número de palavras de uma string lida. Uma palavra é uma seqüência de caracteres não brancos, precedida e seguida por brancos, excetuando-se os extremos
+
+
+4. Escreva um programa em C com a mesma funcionalidade da função strcpm, ou seja, que leia da entrada padrão duas strings e informe qual é a menor, a maior ou se elas são iguais (ordem alfabética), considerar todas as letras em caixa baixa (minúsculo)
+
+
+5. Você foi contratado para desenvolver um programa em linguagem C para um instituto de pesquisa e estatística. Eles intencionam com a sua contratação acelerar a análise dos dados, através da automatização dos cálculos da moda. Definição de Moda: é o valor que mais aparece num conjunto de dados; considerando este conjunto de entradas como exemplo {12, 11, 12, 13, 12, 11, 13, 12, 12, 11, 14, 13, 13, 12, 11, 12}, a moda é 12, pois é o valor que aparece mais vezes no conjunto. Considerar amostras de 14 elementos inteiros
+
+
+6. Escreva um programa que leia uma matriz de 6x6 de números inteiros e descubra se tem algum número que mais se repete
+
+
+
+/*Escreva um programa que leia uma matriz de 6x6 de números inteiros e descubra se tem algum número que mais se repete*/
+
+#include <stdio.h>
+
+int main(){
+    int matriz[6][6] = {0}, numr = 0, repete = 0, pete = 0, lin, col, num;
+
+    for (lin = 0; lin < 6; lin++){
+        for (col = 0; col < 6; col++){
+            printf("\nInsira um valor para o elemento A[%d][%d]: ", lin+1, col+1);
+            scanf("%d%*c", &matriz[lin][col]);
+        }
+    }
+    for (lin = 0; lin < 6; lin++){
+        for (col = 0; col < 6; col++){
+            printf("%4d | ", matriz[lin][col]);
+            for (int a = 0; a < 6; a++){
+                for (int b = 0; b < 6; b++){
+                    if (matriz[lin][col] == matriz[a][b]){
+                        repete++;
+                    }
+                }
+            }
+            if (repete > pete){
+                pete = repete;
+                numr = 1;
+                num = matriz[lin][col];
+            } else if(repete==pete){
+                numr = 0;
+                if (matriz[lin][col] == num){
+                    numr = 1;
+                }
+            }
+            repete = 0;
+        }
+        printf("\n");
+    }
+    printf("\n\n\nTem algum número que + repete: ");
+    numr > 0 ? printf("Sim\nQual o número: %d\n\n",num):printf("Não\n");
+}

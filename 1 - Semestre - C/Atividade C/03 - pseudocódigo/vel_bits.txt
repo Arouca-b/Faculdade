@@ -1,0 +1,6 @@
+Escreva("Insira o tamanho do arquivo(bits): ");
+leia(tam);
+Escreva("Insira a velocidade da sua conexão(bits): ");
+leia(vel);
+t=tam/vel;
+Escreva("Segundos para baixar o arquivo: " + ard(t));

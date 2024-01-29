@@ -1,0 +1,77 @@
+/*O professor com 2 turmas de 4 alunos cada, fez 3
+provas durante um semestre mas só levará em
+conta 2 notas mais altas para calcular a média.
+Faça um programa que peça as 3 notas de cada
+aluno de cada turma, valide-as (0 - 10), e que
+mostre como seria a média com as 3 notas, e que
+mostre a média com as 2 notas mais altas,
+apresentando a nota descartada. Utilizar matriz 3D*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+    char alunos[2][4][50];
+    float notas[2][4][3], media[2][4], maior, menor,soma, soma_m;
+
+    for (int turma = 0; turma < 2; turma++){
+        printf("\t\t\tTURMA %d\n\n", turma+1);
+        for (int q_al = 0; q_al < 4; q_al++){
+            printf("Nome do %dº Aluno(a): ", q_al+1);
+            scanf(" %[^\n]s", alunos[turma][q_al]);
+            printf("\n");
+        }
+        system("clear||cls");
+    }
+    for (int turma = 0; turma < 2; turma++){
+        printf("\t\t\tTURMA %d\n\n", turma+1);
+        for (int q_al = 0; q_al < 4; q_al++){
+            printf("Nome do Aluno: %s\n", alunos[turma][q_al]);
+            for ( int i = 0; i < 3; i++){
+                printf("%dº Nota: ", i+1);
+                scanf("%f%*c", &notas[turma][q_al][i]);
+                while(notas[turma][q_al][i] > 10 || notas[turma][q_al][i] < 0){
+                    printf("\n\n\t\t\tNota inválida, insira uma correta!\n\n");
+                    printf("%dº Nota: ", i+1);
+                    scanf("%f%*c", &notas[turma][q_al][i]);
+                }
+                if (/* condition */)
+                {
+                    /* code */
+                }
+                
+            }
+            printf("\n");
+        }
+        system("clear||cls");
+    }
+
+    for (int turma = 0; turma < 2; turma++){
+        printf("\t\t\tTURMA %d\n\n", turma+1);
+        for (int q_al = 0; q_al < 4; q_al++){
+            soma = soma_m = maior = menor = 0;
+            printf("\n\nNome do Aluno: %s\n", alunos[turma][q_al]);
+            for ( int i = 0, aux = 0; i < 3; i++){
+                printf("%dº Nota: %.2f\n", i+1, notas[turma][q_al][i]);
+                if (aux<2){
+                    if (notas[turma][q_al][i]>=maior && notas[turma][q_al][i] > notas[turma][q_al][i+1]){
+                        maior = notas[turma][q_al][i];
+                        soma_m += maior;
+                        menor = notas[turma][q_al][i+1];
+                    }else{
+                        maior = notas[turma][q_al][i+1];
+                        soma_m += maior;
+                        menor = notas[turma][q_al][i];
+                    }
+                    aux++;
+                }
+                soma+=notas[turma][q_al][i];
+            }
+            printf("Média com as três notas: %.2f\n", soma/3);
+            printf("Média com as 2 maiores notas: %.2f\n", soma_m/2);
+            printf("Nota descartada: %.2f\n", menor);
+        }
+        printf("\n\n");
+    }
+    
+}

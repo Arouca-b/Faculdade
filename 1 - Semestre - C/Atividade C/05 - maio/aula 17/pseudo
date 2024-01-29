@@ -1,0 +1,47 @@
+Inicio
+    inteiro: linha, coluna, limite = 0, diferenca, media, q_vizinhos, matriz[3][3] = {{185, 76, 205}, {180, 130, 60} , {170, 102, 120}};
+    Escreva("Digite o limite para ruído na imagem: ");
+    Leia(limite);
+
+    enquanto (limite<0 || limite>255) faca 
+        Escreva("\nValor invalido para o limite(0 - 255)\n Digite novamente: ");
+        Leia(limite);
+    fimenquanto
+    Escreva("Matriz original: ");
+    para(linha = 0; linha <= 2; linha++) faca 
+        para (coluna = 0; coluna <= 2; coluna++)  faca 
+            Escreva( matriz[linha][coluna]);
+        fimpara
+    fimpara
+
+    para (linha = 0; linha <= 2; linha++) faca 
+        para (coluna = 0; coluna <= 2; coluna++) faca 
+            
+            q_vizinhos = (linha-1 >= 0 && coluna-1 >= 0) + (linha-1 >= 0) + (linha-1 >= 0 && coluna+1 <= 2) + (coluna-1 >= 0) + (coluna+1 <= 2) + (linha+1 <= 2 && coluna-1>=0) + (linha+1<=2) + (linha+1 <= 2 && coluna+1<=2); 
+
+            media = (((linha-1 >= 0 && coluna-1 >= 0) * matriz[linha-1][coluna-1]) +
+                    ((linha-1 >= 0) * matriz[linha-1][coluna]) + 
+                    ((linha-1 >= 0 && coluna+1 <= 2)*matriz[linha-1][coluna+1]) + 
+                    ((coluna-1 >= 0)*matriz[linha][coluna-1]) + 
+                    ((coluna+1 <= 2)*matriz[linha][coluna+1]) + 
+                    ((linha+1 <= 2 && coluna-1>=0)*matriz[linha+1][coluna-1]) + 
+                    ((linha+1<=2)*matriz[linha+1][coluna]) + 
+                    ((linha+1 <= 2 && coluna+1<=2)*matriz[linha+1][coluna+1])) / q_vizinhos;
+                
+            diferenca <- media - matriz[linha][coluna];
+            se(diferenca < 0) entao 
+                diferenca <- diferenca * -1;
+            fimse
+            se(diferenca > limite) entao 
+            matriz[linha][coluna] = media;
+            fimse
+        fimpara
+    fimpara
+
+    Escreva("Matriz com filtro: ");
+    para(linha = 0; linha <= 2; linha++) faca 
+        para (coluna = 0; coluna <= 2; coluna++) faca 
+            Escreva(matriz[linha][coluna]);
+        fimpara
+    fimpara
+fimalgoritmo

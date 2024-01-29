@@ -1,0 +1,6 @@
+Escreva("Digite os KM percorridos:");
+leia(km);
+Escreva("Litros gastos:");
+leia(litros);
+km_l = km/litros;
+Escreva("Seu carro faz " + km_l + "km/l");

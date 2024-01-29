@@ -1,0 +1,6 @@
+Escreva("Insira o valor do Álcool: R$");
+Leia(alc);
+Escreva("Insira o valor do Gasolina: R$");
+Leia(gas);
+percentual = (alc/gas) * 100;
+Escreva("O percentual é: " + percentual + "%");

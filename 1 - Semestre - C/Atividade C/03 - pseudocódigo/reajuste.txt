@@ -1,0 +1,39 @@
+#define n_funcionarios 584
+Escreva("Digite o valor do salário mínimo: R$");
+Leia(salario_min);
+
+para int i = 0; i < n_funcionarios; i++, faça:
+    Escreva("Nome funcionário: ");
+    leia(nome[i]);
+    Escreva("salário do cliente: R$");
+    leia(salario[i]);
+    folha = folha + salario[i];
+
+    se ( 3*salario_min > salario[i])
+    {
+        n_salario[i] = salario[i] * 1.5; 
+        percentual[i]=50;
+    }senao se (salario[i] >= 3*salario_min && salario[i]<= 10*salario_min)
+    {
+        n_salario[i] = salario[i] * 1.2;
+        percentual[i]=20;
+    }senao se (salario[i] > 10*salario_min && salario[i] <= 20*salario_min)
+    {
+        n_salario[i] = salario[i] * 1.15;
+        percentual[i]=15;
+    }senao{
+        n_salario[i] = salario[i] * 1.1;
+        percentual[i]=10;
+    }
+    n_folha = n_folha + n_salario[i];
+fim para;
+
+n_folha = (n_folha/folha)*100;
+Escreva("Aumento percentualcentual da folha: " + n_folha - 100);
+
+para int i = 0; i < n_funcionarios; i++, faça: 
+    Escreva("Nome funcionário: " + nome[i]);
+    Escreva("salarioário: R$" + salario[i]);
+    Escreva("Novo salarioário: R$" + n_salario[i]);
+    Escreva("Aumento percentualcentual: " + percentual[i]);
+fim Para;

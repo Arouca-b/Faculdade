@@ -1,0 +1,4 @@
+Escreva("Digite o valor do produto: ");
+leia(valor);
+valor_mes = valor/5;
+Escreva("O valor das 5 parcelas são: R$" + valor_mes);
