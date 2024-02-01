@@ -29,7 +29,7 @@ PRODUTO *inserir_prod(int *quant, PRODUTO *prod1) { // Inserir novos produtos
     system("clear||cls");
     printf("\t\t\t\tNOVO PRODUTO\n\n");
 
-    printf("Código: ");
+    printf("\t\t\tCódigo: ");
     scanf("%d%*c", &cod);
     fflush(stdout);
     fflush(stdin);
@@ -38,19 +38,19 @@ PRODUTO *inserir_prod(int *quant, PRODUTO *prod1) { // Inserir novos produtos
         system("clear||cls");
         printf("\n\n\t\t\t\tCódigo já utilizado\n\n");
         printf("\t\t\t\tNOVO PRODUTO\n\n");
-        printf("Código: ");
+        printf("\t\t\tCódigo: ");
         scanf("%d%*c", &cod);
         verifica_duplicidade = procurar_produto(cod, prod1, *quant);
     }
     novo->cod = cod;
-    printf("Nome produto: ");
+    printf("\t\t\tNome produto: ");
     scanf("%99[^\n]", novo->desc);
     fflush(stdin);
     // receber valor estoque
-    printf("Estoque: ");
+    printf("\t\t\tEstoque: ");
     scanf("%d%*c", &novo->estoque);
 
-    printf("Preço: R$ ");
+    printf("\t\t\tPreço: R$ ");
     scanf("%f", &novo->preco);
     novo->Item = novo->preco * novo->estoque;
     fflush(stdin);

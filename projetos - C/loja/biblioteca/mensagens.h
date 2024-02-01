@@ -2,6 +2,7 @@
 #define MENSAGENS_H
 #include "dados.h"
 
+void creditos();
 void menu();
 int escolhe_opcao();
 void falta_dados();

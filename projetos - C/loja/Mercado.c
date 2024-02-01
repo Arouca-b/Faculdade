@@ -13,7 +13,10 @@ int main() {
     int opcao = 0;
     VENDA *vendas_prod = recupera_historico_vendas(vendas_prod, &quant_vendas);
     PRODUTO *lista_Produtos = recupera_lista_produtos(lista_Produtos, &quant_produtos);
-
+    
+    if (quant_produtos == 0 && quant_vendas==0){
+        creditos();
+    }
     do {
         menu();
         fflush(stdin);

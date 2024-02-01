@@ -3,19 +3,48 @@
 #include "dados.h"
 
 //MENSAGENS
-void menu() {
-    printf("\t\t\t\tMERCADO NEGRO\n\n\n");
-    printf("1.    Inserir Produto\n");
-    printf("2.    Atualizar estoque\n");
-    printf("3.    Vendas\n");
-    printf("4.    Consultar preço\n");
-    printf("5.    Mostrar na tela os produtos e a quantidade existente em "
-            "estoque\n");
-    printf(
-        "6.    Relatório de faturamento de vendas em um determinado periodo\n\n");
-    printf("0.    SAIR\n\n");
 
-    printf("Escolhe: ");
+void creditos(){
+    printf("\t\t\t***  **  **  **  **  **  **  **  **  **  **  ***\n");
+    printf("\t\t\t*                                              *\n");
+    printf("\t\t\t*                                              *\n");
+    printf("\t\t\t*           PROJETO DESENVOLVIDO POR:          *\n");
+    printf("\t\t\t*              --> BRENO AROUCA <--            *\n");
+    printf("\t\t\t*                                              *\n");
+  /*printf("\t\t\t*                => PROFESSOR <=               *\n");
+    printf("\t\t\t*                 --> EDGAR <--                *\n");
+    printf("\t\t\t*                                              *\n");*/
+    printf("\t\t\t*             PROGRAMA PARA SIMULAR            *\n");
+    printf("\t\t\t*          MERCADO - LOJA - RESTAURANTE        *\n");
+    printf("\t\t\t*                                              *\n");
+    printf("\t\t\t*              REGISTRO DE PRODUTOS            *\n");
+    printf("\t\t\t*                       &                      *\n");
+    printf("\t\t\t*              EFETUAÇÃO DE VENDAS             *\n");
+    printf("\t\t\t*                                              *\n");
+    printf("\t\t\t*                                              *\n");
+    printf("\t\t\t***  **  **  **  **  **  **  **  **  **  **  ***\n");
+    sleep(8);
+    system("clear||cls");
+}
+
+void menu() {
+    printf("\t\t\t*------------------------------------------*\n");
+    printf("\t\t\t|                                          |\n");
+    printf("\t\t\t|               MERCADO NEGRO              |\n");
+    printf("\t\t\t|                                          |\n");
+    printf("\t\t\t|                                          |\n");
+    printf("\t\t\t|    1.   Inserir Produto                  |\n");
+    printf("\t\t\t|    2.   Atualizar estoque                |\n");
+    printf("\t\t\t|    3.   Realizar venda                   |\n");
+    printf("\t\t\t|    4.   Consultar preço                  |\n");
+    printf("\t\t\t|    5.   Produtos Cadastrados             |\n");
+    printf("\t\t\t|    6.   Relatório Faturamento            |\n");
+    printf("\t\t\t|                                          |\n");
+    printf("\t\t\t|                                          |\n");
+    printf("\t\t\t|    0.   Sair                             |\n");
+    printf("\t\t\t*------------------------------------------*\n\n\n");
+
+    printf("\t\t\tEscolhe: ");
 }
 
 int escolhe_opcao() {
