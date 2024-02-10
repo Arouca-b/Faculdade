@@ -83,7 +83,7 @@ void pre_venda(PRODUTO *lista_produtos, int quantidade_produtos){
             imprimir_produtos(produtos_cliente, quant_itens_comprados);
             printf("\n\nVALOR TOTAL \t\t\t\t\t\tR$ %.2f\n\n\n", VALOR_TOTAL);
             salva_pre_venda(produtos_cliente, quant_itens_comprados, VALOR_TOTAL);
-            printf("\n\n(1 - Sim) (0 - Não) \nTem mais produtos:  ");
+            printf("\n(0 - Concluir venda)\n(1 - Adicionar produtos)\n");
             scanf("%d%*c", &comprar);
             fflush(stdin);
             fflush(stdout);

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h> // Para sistemas Unix/Linux
 #include "dados.h"
 
 //MENSAGENS

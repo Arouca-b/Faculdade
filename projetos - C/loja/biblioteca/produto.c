@@ -36,8 +36,8 @@ PRODUTO *inserir_prod(int *quant, PRODUTO *prod1) { // Inserir novos produtos
     verifica_duplicidade = procurar_produto(cod, prod1, *quant);
     while (verifica_duplicidade != -1){ //VERIFICAR SE JÁ EXISTE UM PRODUTO COM CÓDIGO
         system("clear||cls");
-        printf("\n\n\t\t\t\tCódigo já utilizado\n\n");
-        printf("\t\t\t\tNOVO PRODUTO\n\n");
+        printf("\n\n\t\t\t\x1b[31mCódigo já Cadastrado\n\n");
+        printf("\t\t\t\t\x1b[0mNOVO PRODUTO\n\n");
         printf("\t\t\tCódigo: ");
         scanf("%d%*c", &cod);
         verifica_duplicidade = procurar_produto(cod, prod1, *quant);
@@ -88,19 +88,21 @@ PRODUTO *ordenar_produtos(PRODUTO *origem, PRODUTO *novo,int quant) { // ordenar
 }
 
 void imprimir_produtos(PRODUTO *produtos, int quant) { // IMPRIMIR TODOS OS PRODUTOS
-    printf("\n\t\t\tLISTA DE PRODUTOS\n\n");
-    printf("%12s", " Código | ");
-    printf("%20s", "Descrição   | ");
-    printf("%12s", "Quantidade | ");
-    printf("%12s", "Preço unt | ");
-    printf("%12s", "Preço\n");
+    printf("\n\t\t\t\t    LISTA DE PRODUTOS\n\n\n");
+    printf("\t\t---------------------------------------------------------------------\n\t\t");
+    printf("|%12s| ", "Código   ");
+    printf("%20s|", "    Descrição    ");
+    printf("%13s", "Quantidade |");
+    printf(" %12s", "Preço unt |");
+    printf("%11s |\n", "Preço  ");
     for (int i = 0; i < quant; i++) {
-        printf("%6d", produtos[i].cod);
-        printf("%15s", produtos[i].desc);
-        printf("%13d", produtos[i].estoque);
-        printf("%15.2f", produtos[i].preco);
-        printf("%15.2f\n", produtos[i].Item);
+        printf("\t\t| %7d   |", produtos[i].cod);
+        printf(" %14s    |", produtos[i].desc);
+        printf("  %8d  |", produtos[i].estoque);
+        printf("%10.2f |", produtos[i].preco);
+        printf("%10.2f |\n", produtos[i].Item);
     }
+    printf("\t\t---------------------------------------------------------------------\n\n");
 }
 
 void atualizar_estoque(PRODUTO *produtos, int quant) { //ATUALIZAR QUANTIDADE DE ESTOQUE, SOMANDO OU DIMINUIDO
