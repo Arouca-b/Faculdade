@@ -35,12 +35,12 @@ VENDA *venda_de_produto(VENDA *sistema_compras, int *quantidade_vendas, PRODUTO 
     (*quantidade_vendas)++;
     salva_venda(sistema_compras, *quantidade_vendas);
     system("clear||cls");
-    printf("\n\n\t\t\t\tVENDA EFETUADA COM SUCESSO!\n\n");
+    printf("\n\n\t\t\t\t   VENDA EFETUADA COM SUCESSO!\n\n");
     pausa();
     return sistema_compras;
 }
 
-//Função que serve como carrinho, escolher os produtos 
+//Função que serve como carrinho, escolher os produtos
 void pre_venda(PRODUTO *lista_produtos, int quantidade_produtos){
     int cod = 0, indice_produto = 0, comprar = 1, q_item = 0, quant_itens_comprados = 0;
     float VALOR_TOTAL = 0;
@@ -48,19 +48,19 @@ void pre_venda(PRODUTO *lista_produtos, int quantidade_produtos){
 
     system("clear||cls");
     while (comprar) {
-        printf("\n\t\t\tSISTEMA DE VENDAS\n\n");
+        printf("\n\t\t\t\t\tSISTEMA DE VENDAS\n\n");
 
-        printf("Código do produto: ");
+        printf("\t\t-> Codigo do produto: ");
         scanf("%d%*c", &cod);
         fflush(stdin);
         indice_produto = procurar_produto(cod, lista_produtos, quantidade_produtos);
         if (indice_produto != -1) {
             do {
-                printf("Produto: %s\n", lista_produtos[indice_produto].desc);
-                printf("Quantidade: ");
+                printf("\t-> Produto: %s\n", lista_produtos[indice_produto].desc);
+                printf("\t-> Quantidade: ");
                 scanf("%d%*c", &q_item);
                 if (q_item <= 0) {
-                printf("\n\n\n\t\tInsira um valor válido\n\n");
+                printf("\n\n\n\t\tInsira um valor valido\n\n");
                 }
             } while (q_item <= 0);
 
@@ -71,27 +71,29 @@ void pre_venda(PRODUTO *lista_produtos, int quantidade_produtos){
 
             lista_produtos[indice_produto].estoque -= q_item;//diminuir estoque da lista de produtos
 
-            lista_produtos[indice_produto].Item = lista_produtos[indice_produto].estoque * lista_produtos[indice_produto].preco; //novo preco ITEM
+            lista_produtos[indice_produto].preco_estoque = lista_produtos[indice_produto].estoque * lista_produtos[indice_produto].preco; //novo preco ITEM
 
             produtos_cliente[quant_itens_comprados].estoque = q_item;
-            produtos_cliente[quant_itens_comprados].Item = q_item * lista_produtos[indice_produto].preco;
+            produtos_cliente[quant_itens_comprados].preco_estoque = q_item * lista_produtos[indice_produto].preco;
             salvar_lista_produtos(lista_produtos, quantidade_produtos);
             VALOR_TOTAL += produtos_cliente[quant_itens_comprados].preco * q_item;
             quant_itens_comprados++;
 
             system("clear||cls");
+            printf("\n\t\t\t\t\tSISTEMA DE VENDAS\n\n");
             imprimir_produtos(produtos_cliente, quant_itens_comprados);
-            printf("\n\nVALOR TOTAL \t\t\t\t\t\tR$ %.2f\n\n\n", VALOR_TOTAL);
+            printf("\n\t\tVALOR TOTAL \t\t\t\t\t\tR$ %.2f\n\n", VALOR_TOTAL);
             salva_pre_venda(produtos_cliente, quant_itens_comprados, VALOR_TOTAL);
             printf("\n(0 - Concluir venda)\n(1 - Adicionar produtos)\n");
-            scanf("%d%*c", &comprar);
-            fflush(stdin);
+            printf("\n\t\t-> Escolha: ");
+            scanf("%d", &comprar);
+            getchar();
             fflush(stdout);
             system("clear||cls");
         } else {
             system("clear||cls");
-            printf("\t\t\tPRODUTO NÃO ENCONTRADO\n\n\n");
-            printf("\t\t\t\tInsira um código válido\n\n");
+            printf("\t\t\t\tPRODUTO NAO ENCONTRADO\n\n\n");
+            printf("\t\t\t\t\tInsira um Codigo valido\n\n");
             pausa();
         }
     }
@@ -134,7 +136,7 @@ VENDA concluir_venda(VENDA venda_efetuada, int codigo_venda){ // RESGATA OS PROD
 
     // zerando o conteudo do arquivo preVenda que não é necessário
     remove("preVenda.txt");
-    
+
     return venda_efetuada;
 }
 
@@ -187,7 +189,7 @@ void relatorio_faturamento(VENDA *vendas, int quant_vendas) { // IMPRIMIR TODAS 
     float faturamentoMes = 0;
     system("clear||cls");
     printf("\t\t\t\tFATURAMENTO MENSAL\n\n\n");
-    printf("Insira o mês e o ano que deseja verificar (ex: 06 2023): ");
+    printf("Insira o mes e o ano que deseja verificar (ex: 06 2023): ");
     scanf("%d%*c%d%*c", &mes, &ano);
     system("clear||cls");
     printf("\t\t\t\tFATURAMENTO %d/%d\n\n\n", mes, ano);
@@ -197,14 +199,14 @@ void relatorio_faturamento(VENDA *vendas, int quant_vendas) { // IMPRIMIR TODAS 
             faturamentoMes += vendas[i].preco_venda;
         }
     }
-    printf("\n\nTOTAL ARRECADADO MÊS %d/%d                         R$ %.2f\n\n", mes, ano, faturamentoMes);
+    printf("\n\nTOTAL ARRECADADO MES %d/%d                         R$ %.2f\n\n", mes, ano, faturamentoMes);
     pausa();
     system("clear||cls");
 }
 
 void imprimir_vendas(VENDA vendas) { // IMPRIMIR VENDAS REALIZADAS
-    printf("\n\nCódigo Venda: %d\n", vendas.codigoVenda);
-    printf("\nHorário: %2d:%2d:%2d\n"
+    printf("\n\nCodigo Venda: %d\n", vendas.codigoVenda);
+    printf("\nHorario: %2d:%2d:%2d\n"
     "Data: %2d/%2d/%2d\n", vendas.hora, vendas.minutos,
             vendas.segundos, vendas.dia, vendas.mes, vendas.ano);
     printf("\nVALOR\t\t\tR$ %.2f\n\n", vendas.preco_venda);

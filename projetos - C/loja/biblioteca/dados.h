@@ -5,7 +5,7 @@ typedef struct {
     int cod, estoque;
     char desc[100];
     float preco;
-    float Item;
+    float preco_estoque;
 } PRODUTO;
 
 //VENDAS

@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h> // Para sistemas Unix/Linux
 #include "dados.h"
+#include <unistd.h> // Para sistemas Unix/Linux
+//#include <windows.h> // Para sistemas Windows
 
 //MENSAGENS
 
 void creditos(){
-    printf("\t\t\t***  **  **  **  **  **  **  **  **  **  **  ***\n");
+    printf("\n\n\n\n\t\t\t***  **  **  **  **  **  **  **  **  **  **  ***\n");
     printf("\t\t\t*                                              *\n");
     printf("\t\t\t*                                              *\n");
     printf("\t\t\t*           PROJETO DESENVOLVIDO POR:          *\n");
@@ -20,7 +21,7 @@ void creditos(){
     printf("\t\t\t*                                              *\n");
     printf("\t\t\t*              REGISTRO DE PRODUTOS            *\n");
     printf("\t\t\t*                       &                      *\n");
-    printf("\t\t\t*              EFETUAÇÃO DE VENDAS             *\n");
+    printf("\t\t\t*              EFETUACAO DE VENDAS             *\n");
     printf("\t\t\t*                                              *\n");
     printf("\t\t\t*                                              *\n");
     printf("\t\t\t***  **  **  **  **  **  **  **  **  **  **  ***\n");
@@ -37,9 +38,9 @@ void menu() {
     printf("\t\t\t|    1.   Inserir Produto                  |\n");
     printf("\t\t\t|    2.   Atualizar estoque                |\n");
     printf("\t\t\t|    3.   Realizar venda                   |\n");
-    printf("\t\t\t|    4.   Consultar preço                  |\n");
+    printf("\t\t\t|    4.   Consultar preco                  |\n");
     printf("\t\t\t|    5.   Produtos Cadastrados             |\n");
-    printf("\t\t\t|    6.   Relatório Faturamento            |\n");
+    printf("\t\t\t|    6.   Relatorio Faturamento            |\n");
     printf("\t\t\t|                                          |\n");
     printf("\t\t\t|                                          |\n");
     printf("\t\t\t|    0.   Sair                             |\n");
@@ -56,27 +57,27 @@ int escolhe_opcao() {
     getchar();
     if ((opcao > 6 || opcao < 0)) {
         system("clear||cls");
-        printf("\n\n\t\t\t\t OPÇÃO INVÁLIDA\n\n");
+        printf("\n\n\t\t\t\t OPCAO INVALIDA\n\n");
         return -1;
     }
     return opcao;
 }
 
 void pausa() {
-    printf("\n\n\t\t\t\taperte ENTER para continuar\n\n");
+    printf("\n\n\t\t\t\t    aperte ENTER para continuar\n\n");
     scanf("%*c");
     system("clear||cls");
 }
 
 void falta_dados() {
     system("clear||cls");
-    printf("\n\n\t\t\t   Alimente o Banco de dados primeiro!!\n\n");
+    printf("\n\n\t\t\t\tAlimente o Banco de dados primeiro!!\n\n");
     pausa();
 }
 
 void erro() {
     system("clear||cls");
-    printf("\n\n\t\t\tNão encontrado no banco de dados!!\n\n");
+    printf("\n\n\t\t\tNao encontrado no banco de dados!!\n\n");
     pausa();
 }
 
@@ -90,5 +91,5 @@ void limpar_memoria(VENDA *sistema_vendas, int quantidade_venda, PRODUTO *lista_
 
 void despedida(){
     system("clear||cls");
-    printf("\n\n\n\n\t\t\tDESCANSAR NÉ!!\n\n\n\n\n\n\n\n");
+    printf("\n\n\n\n\t\t\t\tHORA DE DESCANSAR, AMANHA E DIA DE SOFRER(TRABALHAR) DE NOVO!!\n\n\n\n\n\n\n\n");
 }

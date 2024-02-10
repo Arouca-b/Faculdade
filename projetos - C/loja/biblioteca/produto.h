@@ -5,8 +5,12 @@
 //PRODUTOS
 PRODUTO* alocar_espaco_produtos();
 PRODUTO* realocar_espaco_produtos(PRODUTO *prod2, int quant);
+PRODUTO *excluirProduto(PRODUTO *produtos, int posicao, int *quantidade);
+PRODUTO editarProduto(PRODUTO produto);
+PRODUTO *produtos_cadastrados(PRODUTO *lista_Produtos, int *quant_produtos);
 void imprimir_produtos(PRODUTO* produtos, int quant);
-PRODUTO* inserir_prod(int *quant, PRODUTO* prod1);
+void imprimir_produto_unico(PRODUTO *produtos, int posicao);
+PRODUTO *inserir_prod(int *quant, PRODUTO* prod1);
 PRODUTO *ordenar_produtos(PRODUTO *origem, PRODUTO *novo, int quant);
 void atualizar_estoque(PRODUTO *produtos, int quant);
 int procurar_produto(int cod, PRODUTO *prod2, int quant);
