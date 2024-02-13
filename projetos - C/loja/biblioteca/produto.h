@@ -1,3 +1,4 @@
+
 #ifndef PRODUTO_H
 #define PRODUTO_H
 #include "dados.h"
@@ -9,7 +10,7 @@ PRODUTO *excluirProduto(PRODUTO *produtos, int posicao, int *quantidade);
 PRODUTO editarProduto(PRODUTO produto);
 PRODUTO *produtos_cadastrados(PRODUTO *lista_Produtos, int *quant_produtos);
 void imprimir_produtos(PRODUTO* produtos, int quant);
-void imprimir_produto_unico(PRODUTO *produtos, int posicao);
+void imprimir_produto_unico(PRODUTO produtos);
 PRODUTO *inserir_prod(int *quant, PRODUTO* prod1);
 PRODUTO *ordenar_produtos(PRODUTO *origem, PRODUTO *novo, int quant);
 void atualizar_estoque(PRODUTO *produtos, int quant);

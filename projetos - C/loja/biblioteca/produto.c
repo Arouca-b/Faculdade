@@ -1,5 +1,5 @@
 
-#include "produto.h"
+#include "produtos.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include "mensagens.h"
@@ -89,6 +89,7 @@ PRODUTO *ordenar_produtos(PRODUTO *origem, PRODUTO *novo,int quant) { // ordenar
 }
 
 //Case 5
+
 PRODUTO *produtos_cadastrados(PRODUTO *lista_Produtos, int *quant_produtos){
     int opcao = 0, codigo_produto = 0, posicao = 0;
     do{
@@ -122,6 +123,7 @@ PRODUTO *produtos_cadastrados(PRODUTO *lista_Produtos, int *quant_produtos){
 
                 case 2:
                     lista_Produtos[posicao]= editarProduto(lista_Produtos[posicao]);
+                    salvar_lista_produtos(lista_Produtos, *quant_produtos);
                     break;
 
                 default:
@@ -153,40 +155,48 @@ PRODUTO *excluirProduto(PRODUTO *produtos, int posicao, int *quantidade){
 
 PRODUTO editarProduto(PRODUTO produto){
     int opcao = 0;
-    system("clear||cls");
-    printf("\n\t\t -> 1 - Alterar Descricao\n");
-    printf("\t\t -> 2 - Alterar Preco\n");
-    printf("\t\t -> 3 - Alterar Estoque\n");
-    printf("\n\n\t\t-> Opcao: ");
-    scanf("%d", &opcao);
-    getchar();
+    
+    do{
+        system("clear||cls");
+        imprimir_produto_unico(produto);
+        printf("\n\n\t\t -> 1 - Alterar Descricao\n");
+        printf("\t\t -> 2 - Alterar Preco\n");
+        printf("\t\t -> 3 - Alterar Estoque\n");
+        printf("\n\n\t\t -> 0 - Sair\n");
+        printf("\n\n\t\t-> Opcao: ");
+        scanf("%d", &opcao);
+        getchar();
 
-    switch (opcao){
-    case 1:
-        printf("\n\n\t\t Old Descrition: %s\n", produto.desc);
-        printf("\n\n\t\t New Descrition: ");
-        scanf("%s%*c", produto.desc);
-        break;
+        switch (opcao){
+        case 1:
+            printf("\n\n\t\t Old Descrition: %s\n", produto.desc);
+            printf("\n\n\t\t New Descrition: ");
+            scanf("%s%*c", produto.desc);
+            break;
 
-    case 2:
-        printf("\n\n\t\t Old price: %.2f\n", produto.preco);
-        printf("\n\n\t\t New price: ");
-        scanf("%f%*c", &produto.preco);
-        produto.preco_estoque = produto.estoque * produto.preco;
-        break;
+        case 2:
+            printf("\n\n\t\t Old price: %.2f\n", produto.preco);
+            printf("\n\n\t\t New price: ");
+            scanf("%f%*c", &produto.preco);
+            produto.preco_estoque = produto.estoque * produto.preco;
+            break;
 
-    case 3:
-        printf("\n\n\t\t Old estoque: %d\n", produto.estoque);
-        printf("\n\n\t\t New Estoque: ");
-        scanf("%d%*c", &produto.estoque);
-        produto.preco_estoque = produto.estoque * produto.preco;
-        break;
+        case 3:
+            printf("\n\n\t\t Old estoque: %d\n", produto.estoque);
+            printf("\n\n\t\t New Estoque: ");
+            scanf("%d%*c", &produto.estoque);
+            produto.preco_estoque = produto.estoque * produto.preco;
+            break;
 
-    default:
-        break;
-    }
+        default:
+            system("clear||cls");
+            printf("\n\n\n\t\t\t\tAtualizacao realizada com sucesso\n");
+            break;
+        } 
+    } while (opcao!=0);
     return produto;
 }
+
 
 void imprimir_produtos(PRODUTO *produtos, int quant) { // IMPRIMIR TODOS OS PRODUTOS
     printf("\t\t--------------------------------------------------------------------------\n\t\t");
@@ -218,7 +228,7 @@ void atualizar_estoque(PRODUTO *produtos, int quant) { //ATUALIZAR QUANTIDADE DE
         scanf("%d%*c", &op);
         system("clear||cls");
         printf("\t\t\tATUALIZACAO DE ESTOQUE\n\n");
-        imprimir_produto_unico(produtos, posicao_produto);
+        imprimir_produto_unico(produtos[posicao_produto]);
         if (op == 1) {
         printf("\n\t\t-> Qtd itens inserir no estoque: ");
             scanf("%d%*c", &estoque);
@@ -266,26 +276,26 @@ void consultar_preco(PRODUTO *produto, int quant_produtos) { // PESQUISA PRODUTO
     posicao = procurar_produto(cod, produto, quant_produtos);
     if (posicao != -1) {
         system("clear||cls");
-        printf("\t\t\t\t\tCONSULTA PREcO\n\n\n");
-        imprimir_produto_unico(produto, posicao);
+        printf("\t\t\t\t\tCONSULTA PRECO\n\n\n");
+        imprimir_produto_unico(produto[posicao]);
         pausa();
     } else {
         erro();
     }
 }
 
-void imprimir_produto_unico(PRODUTO *produtos, int posicao){
+void imprimir_produto_unico(PRODUTO produtos){
     printf("\t\t--------------------------------------------------------------------------\n\t\t");
     printf("|%12s| ", "Codigo   ");
     printf("%19s|", "     Descricao     ");
     printf("%13s", "Quantidade |");
     printf(" %12s", "Preco unt |");
     printf("%11s |\n", "Preco  ");
-    printf("\t\t| %7d    |", produtos[posicao].cod);
-    printf(" %14s     |", produtos[posicao].desc);
-    printf("  %8d  |", produtos[posicao].estoque);
-    printf("%10.2f  |", produtos[posicao].preco);
-    printf("%10.2f  |\n", produtos[posicao].preco_estoque);
+    printf("\t\t| %7d    |", produtos.cod);
+    printf(" %14s     |", produtos.desc);
+    printf("  %8d  |", produtos.estoque);
+    printf("%10.2f  |", produtos.preco);
+    printf("%10.2f  |\n", produtos.preco_estoque);
     printf("\t\t--------------------------------------------------------------------------\n\n");
 }
 

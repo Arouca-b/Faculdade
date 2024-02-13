@@ -1,6 +1,7 @@
+
 #include "vendas.h"
 #include "mensagens.h"
-#include "produto.h"
+#include "produtos.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -72,6 +73,10 @@ void pre_venda(PRODUTO *lista_produtos, int quantidade_produtos){
             lista_produtos[indice_produto].estoque -= q_item;//diminuir estoque da lista de produtos
 
             lista_produtos[indice_produto].preco_estoque = lista_produtos[indice_produto].estoque * lista_produtos[indice_produto].preco; //novo preco ITEM
+            if (lista_produtos[indice_produto].preco_estoque < 0){
+                lista_produtos[indice_produto].preco_estoque*=0; //se estoque tiver negativo, não temos como saber o preço que tinhamos
+            }
+            
 
             produtos_cliente[quant_itens_comprados].estoque = q_item;
             produtos_cliente[quant_itens_comprados].preco_estoque = q_item * lista_produtos[indice_produto].preco;
@@ -163,7 +168,7 @@ VENDA *recupera_historico_vendas(VENDA *historico_vendas, int *quantidade_vendas
     if (fp == NULL){
         return alocar_espaco_vendas();
     }
-
+    historico_vendas = alocar_espaco_vendas();
     fread(quantidade_vendas, sizeof(int), 1, fp);//quantidade de vendas
 
     historico_vendas = realocar_espaco_vendas(historico_vendas, *quantidade_vendas);//alocar tamanho para armazenar os dados de vendas
@@ -199,7 +204,7 @@ void relatorio_faturamento(VENDA *vendas, int quant_vendas) { // IMPRIMIR TODAS 
             faturamentoMes += vendas[i].preco_venda;
         }
     }
-    printf("\n\nTOTAL ARRECADADO MES %d/%d                         R$ %.2f\n\n", mes, ano, faturamentoMes);
+    printf("\n\n\n\nTOTAL ARRECADADO MES %d/%d                         R$ %.2f\n\n", mes, ano, faturamentoMes);
     pausa();
     system("clear||cls");
 }
