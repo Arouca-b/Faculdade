@@ -83,15 +83,30 @@ void erro() {
     pausa();
 }
 
-void limpar_memoria(VENDA *sistema_vendas, int quantidade_venda, PRODUTO *lista_produtos) {
+void limpar_memoria(FATURAMENTO *sistema, int anos, PRODUTO *lista_produtos) {
     free(lista_produtos);
-    for (int i = 0; i < quantidade_venda; i++) {
-        free(sistema_vendas[i].itemvenda);
+
+    for (int i = 0; i < anos; i++){
+        for (int meses = 0; meses < sistema[i].meses_Em_Atividade; meses++){
+            for (int vendas = 0; vendas < sistema[i].faturamentoMes[meses].qVendas_mes; i++){
+                for (int produtos = 0; produtos < sistema[i].faturamentoMes[meses].vendas_mes[vendas].quantidade_produtos; produtos++){
+                    free(sistema[i].faturamentoMes[meses].vendas_mes[vendas].itemvenda);
+                }
+                free(sistema[i].faturamentoMes[meses].vendas_mes);
+            }
+            free(sistema[anos].faturamentoMes);
+        }
     }
-    free(sistema_vendas);
+    free(sistema);
 }
 
 void despedida(){
     system("clear||cls");
     printf("\n\n\n\n\t\t\t\tHORA DE DESCANSAR, AMANHA E DIA DE SOFRER(TRABALHAR) DE NOVO!!\n\n\n\n\n\n\n\n");
+}
+
+void inoperante(){
+    system("clear||cls");
+    printf("\n\n\n\n\t\t\t\tEstamos em manutenção\n\n\n");
+    pausa();
 }

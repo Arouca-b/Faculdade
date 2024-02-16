@@ -9,7 +9,7 @@
 //FUNÇÕES VENDAS
 
 VENDA *alocar_espaco_vendas(){// reservar Espaço para uma venda
-    VENDA *prod1 = (VENDA *)malloc(sizeof(VENDA));
+    VENDA *prod1 = (VENDA *) calloc(1,sizeof(VENDA));
     if (prod1 == NULL) {
         exit(1);
     }
@@ -152,8 +152,6 @@ void salva_venda(VENDA *historico_vendas, int quantidade_vendas) { //Salva Venda
         exit(1);
     }
 
-    fwrite(&quantidade_vendas, sizeof(int), 1, fp);//Quantidade de vendas registradas
-
     for (int i = 0; i < quantidade_vendas; i++) {
         fwrite(&historico_vendas[i], sizeof(VENDA) - sizeof(PRODUTO *), 1, fp);//vendas
         //Salva os produtos da venda em análise
@@ -163,23 +161,24 @@ void salva_venda(VENDA *historico_vendas, int quantidade_vendas) { //Salva Venda
     fclose(fp);
 }
 
-VENDA *recupera_historico_vendas(VENDA *historico_vendas, int *quantidade_vendas) {
+VENDA *recupera_historico_vendas(VENDA *historico_vendas, int quantidade_vendas) {
     FILE *fp = fopen("historico_vendas.txt", "rb");
+    
     if (fp == NULL){
-        return alocar_espaco_vendas();
+        return historico_vendas;
     }
-    historico_vendas = alocar_espaco_vendas();
-    fread(quantidade_vendas, sizeof(int), 1, fp);//quantidade de vendas
 
-    historico_vendas = realocar_espaco_vendas(historico_vendas, *quantidade_vendas);//alocar tamanho para armazenar os dados de vendas
+    if (quantidade_vendas > 1){
+        historico_vendas = realocar_espaco_vendas(historico_vendas, quantidade_vendas);//alocar tamanho para armazenar os dados de vendas
+    }
 
-    for (int i = 0; i < *quantidade_vendas; i++) {
+    for (int i = 0; i < quantidade_vendas; i++) {
         fread(&historico_vendas[i], sizeof(VENDA) - sizeof(PRODUTO *), 1, fp);//salvar uma venda de cada vez
         historico_vendas[i].itemvenda = alocar_espaco_produtos();
         // Aloca espaço para os produtos, pois não alocado no realocar_espaco_vendas
 
         historico_vendas[i].itemvenda = realocar_espaco_produtos(historico_vendas[i].itemvenda, historico_vendas[i].quantidade_produtos);
-        //poderia substituir isso pelo malloc(sizeof(PRODUTO) * historico_vendas[i].quantidade_produtos)
+        //poderia substituir isso pelo calloc(historico_vendas[i].quantidade_produtos, sizeof(PRODUTO))
 
         // Lê os produtos individualmente
         fread(historico_vendas[i].itemvenda, sizeof(PRODUTO), historico_vendas[i].quantidade_produtos, fp);

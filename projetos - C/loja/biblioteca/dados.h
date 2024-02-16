@@ -23,4 +23,19 @@ typedef struct {
     PRODUTO *itemvenda;
 } VENDA;
 
+typedef struct{
+    int qVendas_mes;
+    int mes;
+    float arrecadado_mensal;
+    VENDA *vendas_mes;
+} FATURAMENTO_MES;
+
+typedef struct{
+    int ano;
+    int mes_Inical; //mes que que empresa começou a utilizar o serviço
+    int meses_Em_Atividade;//Quantidade de meses usando o sistema
+    float arrecadado_anual;
+    FATURAMENTO_MES *faturamentoMes;
+} FATURAMENTO;
+
 #endif // BIBLIOTECA_LOJA_H

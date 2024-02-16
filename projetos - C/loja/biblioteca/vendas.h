@@ -13,7 +13,7 @@ void salva_venda(VENDA *historico_vendas, int quantidade_vendas);
 void imprimir_vendas(VENDA vendas);
 int codVenda();
 void relatorio_faturamento(VENDA* vendas, int quant_vendas);
-VENDA *recupera_historico_vendas(VENDA *historico_vendas, int *quantidade_vendas);
+VENDA *recupera_historico_vendas(VENDA *historico_vendas, int quantidade_vendas);
 
 //FIM VENDAS
 

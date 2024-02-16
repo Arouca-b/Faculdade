@@ -2,6 +2,7 @@
 #include "biblioteca/produto.h"
 #include "biblioteca/dados.h"
 #include "biblioteca/mensagens.h"
+#include "biblioteca/faturamento.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
@@ -9,15 +10,17 @@
 
 int main() {
     setlocale(LC_ALL, "Portuguese");
-    int quant_produtos = 0, quant_vendas = 0;
+    int quant_produtos = 0, anos = 0;
     int opcao = 0;
-    VENDA *vendas_prod = recupera_historico_vendas(vendas_prod, &quant_vendas);
+    FATURAMENTO *sistema_Controle = recuperar_dados_sistema(sistema_Controle, &anos);
+    //VENDA *vendas_prod = recupera_historico_vendas(vendas_prod, &quant_vendas);
     PRODUTO *lista_Produtos = recupera_lista_produtos(lista_Produtos, &quant_produtos);
-    
-    if (quant_produtos == 0 && quant_vendas==0){
+
+    if (sistema_Controle[anos].ano == 0 && anos == 0 &&quant_produtos == 0){
+        sistema_Controle = verifica_datas(sistema_Controle, &anos);
         creditos();
     }
-    do {
+    do{
         menu();
         fflush(stdin);
         opcao = escolhe_opcao();
@@ -38,7 +41,8 @@ int main() {
 
             case 3:
                 if (quant_produtos) {
-                    vendas_prod = venda_de_produto(vendas_prod, &quant_vendas, lista_Produtos, quant_produtos);
+                    sistema_Controle[anos] = renda_anual(sistema_Controle[anos], lista_Produtos, quant_produtos);
+                    //vendas_prod = venda_de_produto(vendas_prod, &quant_vendas, lista_Produtos, quant_produtos);
                 } else {
                     falta_dados();
                 }
@@ -54,23 +58,23 @@ int main() {
 
             case 5:
                 if (quant_produtos) {
-                    system("clear||cls");
-                    imprimir_produtos(lista_Produtos, quant_produtos);
-                    pausa();
+                    lista_Produtos = produtos_cadastrados(lista_Produtos, &quant_produtos);
                 } else {
                     falta_dados();
                 }
             break;
 
             case 6:
-                if (quant_vendas) {
-                    relatorio_faturamento(vendas_prod, quant_vendas);
+                inoperante();
+                /*if (!anos) {
+                    
+                    //relatorio_faturamento(vendas_prod, quant_vendas);
                 }else{
                     falta_dados();
-                }
+                }*/
             break;
         }
-    } while (opcao != 0);
-    limpar_memoria(vendas_prod, quant_vendas, lista_Produtos);
+    }while (opcao != 0);
+    limpar_memoria(sistema_Controle, anos, lista_Produtos);
     despedida();
 }

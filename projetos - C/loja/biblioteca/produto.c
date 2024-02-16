@@ -6,7 +6,7 @@
 
 //FUNÇÕES DE PRODUTOS
 PRODUTO *alocar_espaco_produtos(){
-    PRODUTO *prod1 = (PRODUTO *)malloc(sizeof(PRODUTO));
+    PRODUTO *prod1 = (PRODUTO *) calloc(1, sizeof(PRODUTO));
     if (prod1 == NULL) {
         exit(1);
     }
