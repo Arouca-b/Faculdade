@@ -13,17 +13,17 @@ int main() {
     int quant_produtos = 0, anos = 0;
     int opcao = 0;
     FATURAMENTO *sistema_Controle = recuperar_dados_sistema(sistema_Controle, &anos);
+    sistema_Controle = verifica_datas(sistema_Controle, &anos);
     //VENDA *vendas_prod = recupera_historico_vendas(vendas_prod, &quant_vendas);
     PRODUTO *lista_Produtos = recupera_lista_produtos(lista_Produtos, &quant_produtos);
 
     if (sistema_Controle[anos].ano == 0 && anos == 0 &&quant_produtos == 0){
-        sistema_Controle = verifica_datas(sistema_Controle, &anos);
         creditos();
     }
     do{
         menu();
         fflush(stdin);
-        opcao = escolhe_opcao();
+        opcao = escolhe_opcao(6); //O parametro é a quantidade de opções disponiveis
 
         switch (opcao) {
             case 1:
@@ -43,6 +43,7 @@ int main() {
                 if (quant_produtos) {
                     sistema_Controle[anos] = renda_anual(sistema_Controle[anos], lista_Produtos, quant_produtos);
                     //vendas_prod = venda_de_produto(vendas_prod, &quant_vendas, lista_Produtos, quant_produtos);
+                    salvar_dados_sistema(sistema_Controle, anos);
                 } else {
                     falta_dados();
                 }
@@ -65,13 +66,12 @@ int main() {
             break;
 
             case 6:
-                inoperante();
-                /*if (!anos) {
-                    
-                    //relatorio_faturamento(vendas_prod, quant_vendas);
+                if (sistema_Controle[anos].faturamentoMes[0].qVendas_mes){
+                    //relatorio_Financeiro(sistema_Controle, anos);
+                    relatorio_faturamento(sistema_Controle[anos].faturamentoMes[sistema_Controle[anos].meses_Em_Atividade].vendas_mes, sistema_Controle[anos].faturamentoMes[sistema_Controle[anos].meses_Em_Atividade].qVendas_mes);
                 }else{
                     falta_dados();
-                }*/
+                }
             break;
         }
     }while (opcao != 0);

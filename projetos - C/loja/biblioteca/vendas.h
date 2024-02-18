@@ -11,7 +11,6 @@ void salva_pre_venda(PRODUTO* produtos_comprados, int quantidade, float valor_to
 VENDA concluir_venda(VENDA venda_efetuada, int codigo_venda);
 void salva_venda(VENDA *historico_vendas, int quantidade_vendas);
 void imprimir_vendas(VENDA vendas);
-int codVenda();
 void relatorio_faturamento(VENDA* vendas, int quant_vendas);
 VENDA *recupera_historico_vendas(VENDA *historico_vendas, int quantidade_vendas);
 

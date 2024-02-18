@@ -8,6 +8,12 @@
 
 //MENSAGENS
 
+void pausa() {
+    printf("\n\n\t\t\t\t    aperte ENTER para continuar\n\n");
+    scanf("%*c");
+    system("clear||cls");
+}
+
 void creditos(){
     printf("\n\n\n\n\t\t\t***  **  **  **  **  **  **  **  **  **  **  ***\n");
     printf("\t\t\t*                                              *\n");
@@ -51,24 +57,19 @@ void menu() {
     printf("\t\t\tEscolhe: ");
 }
 
-int escolhe_opcao() {
+int escolhe_opcao(int qtd_opcoes) {
     char t[20];
     int opcao = 0;
     scanf("%19[^\n]", t);
     opcao = atoi(t);
     getchar();
-    if ((opcao > 6 || opcao < 0)) {
+    if ((opcao > qtd_opcoes|| opcao < 0)) {
         system("clear||cls");
         printf("\n\n\t\t\t\t OPCAO INVALIDA\n\n");
+        pausa();
         return -1;
     }
     return opcao;
-}
-
-void pausa() {
-    printf("\n\n\t\t\t\t    aperte ENTER para continuar\n\n");
-    scanf("%*c");
-    system("clear||cls");
 }
 
 void falta_dados() {

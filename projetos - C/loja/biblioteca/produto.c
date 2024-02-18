@@ -1,10 +1,10 @@
 
-#include "produtos.h"
+#include "produto.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include "mensagens.h"
 
-//FUN√á√ïES DE PRODUTOS
+//FUN«’ES DE PRODUTOS
 PRODUTO *alocar_espaco_produtos(){
     PRODUTO *prod1 = (PRODUTO *) calloc(1, sizeof(PRODUTO));
     if (prod1 == NULL) {
@@ -20,7 +20,7 @@ PRODUTO *realocar_espaco_produtos(PRODUTO *prod2, int quant) {
     }
     return prod2;
 }
-// FIM ALOCA√á√ÉO DE MEM√ìRIA
+// FIM ALOCA«√O DE MEM”RIA
 
 PRODUTO *inserir_prod(int *quant, PRODUTO *prod1) { // Inserir novos produtos
     int indice = *quant, cod = 0;
@@ -35,7 +35,7 @@ PRODUTO *inserir_prod(int *quant, PRODUTO *prod1) { // Inserir novos produtos
     fflush(stdout);
     fflush(stdin);
     verifica_duplicidade = procurar_produto(cod, prod1, *quant);
-    while (verifica_duplicidade != -1){ //VERIFICAR SE J√Å EXISTE UM PRODUTO COM C√ìDIGO
+    while (verifica_duplicidade != -1){ //VERIFICAR SE J¡ EXISTE UM PRODUTO COM C”DIGO
         system("clear||cls");
         printf("\n\n\t\t\t\x1b[31mCodigo ja Cadastrado\n\n");
         printf("\t\t\t\t\x1b[0mNOVO PRODUTO\n\n");
@@ -65,8 +65,8 @@ PRODUTO *inserir_prod(int *quant, PRODUTO *prod1) { // Inserir novos produtos
     return prod1;
 }
 
-//ordenar caso cliente insira os c√≥digos do poduto
-PRODUTO *ordenar_produtos(PRODUTO *origem, PRODUTO *novo,int quant) { // ordenar produtos pelo c√≥digo
+//ordenar caso cliente insira os cÛdigos do poduto
+PRODUTO *ordenar_produtos(PRODUTO *origem, PRODUTO *novo,int quant) { // ordenar produtos pelo cÛdigo
     int i = 0;
     if (quant == 0) {
         origem = novo;
@@ -155,7 +155,7 @@ PRODUTO *excluirProduto(PRODUTO *produtos, int posicao, int *quantidade){
 
 PRODUTO editarProduto(PRODUTO produto){
     int opcao = 0;
-    
+
     do{
         system("clear||cls");
         imprimir_produto_unico(produto);
@@ -192,7 +192,7 @@ PRODUTO editarProduto(PRODUTO produto){
             system("clear||cls");
             printf("\n\n\n\t\t\t\tAtualizacao realizada com sucesso\n");
             break;
-        } 
+        }
     } while (opcao!=0);
     return produto;
 }
@@ -245,7 +245,7 @@ void atualizar_estoque(PRODUTO *produtos, int quant) { //ATUALIZAR QUANTIDADE DE
         printf("\t\t\t\t\tEstoque atualizado\n\n");
         pausa();
     } else {
-        erro(); // Caso n√£o ache o produto no banco de dados
+        erro(); // Caso n„o ache o produto no banco de dados
     }
     system("clear||cls");
     salvar_lista_produtos(produtos, quant);
@@ -260,7 +260,7 @@ int procurar_produto(int cod, PRODUTO *prod2, int quant){//PROCURAR DETERMINADO 
     return -1;
 }
 
-void consultar_preco(PRODUTO *produto, int quant_produtos) { // PESQUISA PRODUTO E IMPRIME O PRE√ßO
+void consultar_preco(PRODUTO *produto, int quant_produtos) { // PESQUISA PRODUTO E IMPRIME O PREÁO
     int cod, posicao = 0;
     system("clear||cls");
     printf("\t\t\t\t\tCONSULTA PRECO\n\n\n");
@@ -326,12 +326,12 @@ PRODUTO *recupera_lista_produtos(PRODUTO *produtos, int *quant_produtos){ // REC
     produtos = alocar_espaco_produtos();
 
     fp = fopen("listaProdutos.txt", "rb");
-    if(fp == NULL) { //se n√£o existir lista de produto
-        return produtos;//alocar 1 espa√ßo
+    if(fp == NULL) { //se n„o existir lista de produto
+        return produtos;//alocar 1 espaÁo
     }
 
     fread(quant_produtos, sizeof(int), 1, fp);//quantidade de produtos
-    produtos = realocar_espaco_produtos(produtos, (*quant_produtos) - 1);//realocar mem√≥ria para armazenar todos esses produtos, (*quant_produtos) - 1 porque na fun√ß√£o h√° uma adi√ß√£o na quantidade de aloca√ß√£o
+    produtos = realocar_espaco_produtos(produtos, (*quant_produtos) - 1);//realocar memÛria para armazenar todos esses produtos, (*quant_produtos) - 1 porque na funÁ„o h· uma adiÁ„o na quantidade de alocaÁ„o
 
     fread(produtos, sizeof(PRODUTO), *quant_produtos, fp);
 

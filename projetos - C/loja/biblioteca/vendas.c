@@ -1,7 +1,7 @@
 
 #include "vendas.h"
 #include "mensagens.h"
-#include "produtos.h"
+#include "produto.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -34,7 +34,6 @@ VENDA *venda_de_produto(VENDA *sistema_compras, int *quantidade_vendas, PRODUTO 
     }
     sistema_compras[(*quantidade_vendas)] = concluir_venda(sistema_compras[(*quantidade_vendas)], *quantidade_vendas);
     (*quantidade_vendas)++;
-    salva_venda(sistema_compras, *quantidade_vendas);
     system("clear||cls");
     printf("\n\n\t\t\t\t   VENDA EFETUADA COM SUCESSO!\n\n");
     pausa();

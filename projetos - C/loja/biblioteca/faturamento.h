@@ -10,6 +10,10 @@ FATURAMENTO renda_anual(FATURAMENTO sistema, PRODUTO *lista_Produtos, int produt
 FATURAMENTO_MES renda_mensal(FATURAMENTO_MES mesAtual, PRODUTO *produtos, int produtos_em_estoque);
 FATURAMENTO_MES *alocar_faturamentoMes();
 FATURAMENTO_MES *realocar_faturamentoMes(FATURAMENTO_MES *fat_m, int meses);
-FATURAMENTO recuperar_mes(FATURAMENTO sistema);
+FATURAMENTO_MES* recuperar_mes(FATURAMENTO_MES* sistema, int quantidade_meses);
+void relatorio_Financeiro(FATURAMENTO *sistema, int anos);
+void imprimir_relatorios_anuais(FATURAMENTO *sistema, int anos_atuacao);
+void salvar_dados_sistema(FATURAMENTO *sistema, int anos);
+void salvar_faturamento_mes(FATURAMENTO_MES *sistema, int meses);
 
 #endif // FATURAMENTO_H
