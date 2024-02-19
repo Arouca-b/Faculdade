@@ -35,6 +35,7 @@ typedef struct{
     int mes_Inical; //mes que que empresa começou a utilizar o serviço
     int meses_Em_Atividade;//Quantidade de meses usando o sistema
     float arrecadado_anual;
+    int quantidade_vendas;
     FATURAMENTO_MES *faturamentoMes;
 } FATURAMENTO;
 

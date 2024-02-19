@@ -15,5 +15,12 @@ void relatorio_Financeiro(FATURAMENTO *sistema, int anos);
 void imprimir_relatorios_anuais(FATURAMENTO *sistema, int anos_atuacao);
 void salvar_dados_sistema(FATURAMENTO *sistema, int anos);
 void salvar_faturamento_mes(FATURAMENTO_MES *sistema, int meses);
+void relatorio_Financeiro(FATURAMENTO *sistema, int anos);
+void detalhe_venda(FATURAMENTO *sistema, int anos, int codigo_venda);
+int procurar_limite_ano(FATURAMENTO *sistema, int anos, int codigo_venda);
+void imprimir_relatorios_anuais(FATURAMENTO *sistema, int anos_atuacao);
+void imprimir_relatorios_mensais(FATURAMENTO_MES* sistema_ano, int quant_meses);
+int procurar_ano(FATURAMENTO *sistema, int anos, int ano);
+int procurar_mes(FATURAMENTO_MES *sistema, int quant_meses, int mes);
 
 #endif // FATURAMENTO_H

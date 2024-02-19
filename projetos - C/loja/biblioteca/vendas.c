@@ -35,7 +35,7 @@ VENDA *venda_de_produto(VENDA *sistema_compras, int *quantidade_vendas, PRODUTO 
     sistema_compras[(*quantidade_vendas)] = concluir_venda(sistema_compras[(*quantidade_vendas)], *quantidade_vendas);
     (*quantidade_vendas)++;
     system("clear||cls");
-    printf("\n\n\t\t\t\t   VENDA EFETUADA COM SUCESSO!\n\n");
+    printf("\n\n\n\n\n\n\t\t\t\t   VENDA EFETUADA COM SUCESSO!\n\n");
     pausa();
     return sistema_compras;
 }
@@ -182,8 +182,8 @@ VENDA *recupera_historico_vendas(VENDA *historico_vendas, int quantidade_vendas)
         // Lê os produtos individualmente
         fread(historico_vendas[i].itemvenda, sizeof(PRODUTO), historico_vendas[i].quantidade_produtos, fp);
     }
-
     fclose(fp);
+    printf("Vendas: %d\n", historico_vendas[0].codigoVenda);
     return historico_vendas;
 }
 
