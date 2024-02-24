@@ -27,12 +27,12 @@ VENDA *realocar_espaco_vendas(VENDA *prod2, int quant) { // Realocação de espa
 }
 
 //Função para efetuar Vendas
-VENDA *venda_de_produto(VENDA *sistema_compras, int *quantidade_vendas, PRODUTO *produtos, int quantidade_produtos) {
+VENDA *venda_de_produto(VENDA *sistema_compras, int *quantidade_vendas, PRODUTO *produtos, int quantidade_produtos, int codigo_venda) {
     pre_venda(produtos, quantidade_produtos);
     if (*quantidade_vendas > 0) {
         sistema_compras = realocar_espaco_vendas(sistema_compras, *quantidade_vendas);
     }
-    sistema_compras[(*quantidade_vendas)] = concluir_venda(sistema_compras[(*quantidade_vendas)], *quantidade_vendas);
+    sistema_compras[(*quantidade_vendas)] = concluir_venda(sistema_compras[(*quantidade_vendas)], codigo_venda+1);
     (*quantidade_vendas)++;
     system("clear||cls");
     printf("\n\n\n\n\n\n\t\t\t\t   VENDA EFETUADA COM SUCESSO!\n\n");
@@ -136,7 +136,7 @@ VENDA concluir_venda(VENDA venda_efetuada, int codigo_venda){ // RESGATA OS PROD
     venda_efetuada.dia = localTime->tm_mday;
     venda_efetuada.mes = localTime->tm_mon + 1;
     venda_efetuada.ano = localTime->tm_year + 1900;
-    venda_efetuada.codigoVenda = codigo_venda+1;
+    venda_efetuada.codigoVenda = codigo_venda;
 
     // zerando o conteudo do arquivo preVenda que não é necessário
     remove("preVenda.txt");
@@ -172,7 +172,7 @@ VENDA *recupera_historico_vendas(VENDA *historico_vendas, int quantidade_vendas)
     }
 
     for (int i = 0; i < quantidade_vendas; i++) {
-        fread(&historico_vendas[i], sizeof(VENDA) - sizeof(PRODUTO *), 1, fp);//salvar uma venda de cada vez
+        fread(&historico_vendas[i], sizeof(VENDA) - sizeof(PRODUTO *), 1, fp);//ler uma venda de cada vez
         historico_vendas[i].itemvenda = alocar_espaco_produtos();
         // Aloca espaço para os produtos, pois não alocado no realocar_espaco_vendas
 
@@ -183,28 +183,19 @@ VENDA *recupera_historico_vendas(VENDA *historico_vendas, int quantidade_vendas)
         fread(historico_vendas[i].itemvenda, sizeof(PRODUTO), historico_vendas[i].quantidade_produtos, fp);
     }
     fclose(fp);
-    printf("Vendas: %d\n", historico_vendas[0].codigoVenda);
     return historico_vendas;
 }
 
-void relatorio_faturamento(VENDA *vendas, int quant_vendas) { // IMPRIMIR TODAS AS VENDAS E VALOR ARRECADADO NO MÊS
-    int mes, ano;
-    float faturamentoMes = 0;
+void relatorio_faturamento(VENDA *vendas, int quant_vendas, float faturamentoMes) { // IMPRIMIR TODAS AS VENDAS E VALOR ARRECADADO NO MÊS
+
     system("clear||cls");
-    printf("\t\t\t\tFATURAMENTO MENSAL\n\n\n");
-    printf("Insira o mes e o ano que deseja verificar (ex: 06 2023): ");
-    scanf("%d%*c%d%*c", &mes, &ano);
-    system("clear||cls");
-    printf("\t\t\t\tFATURAMENTO %d/%d\n\n\n", mes, ano);
+    printf("\t\t\t\tFATURAMENTO %d/%d\n\n\n", vendas[0].mes, vendas[0].ano);
     for (int i = 0; i < quant_vendas; i++) {
-        if (vendas[i].mes == mes && vendas[i].ano == ano){
-            imprimir_vendas(vendas[i]);
-            faturamentoMes += vendas[i].preco_venda;
-        }
+        imprimir_vendas(vendas[i]);  
     }
-    printf("\n\n\n\nTOTAL ARRECADADO MES %d/%d                         R$ %.2f\n\n", mes, ano, faturamentoMes);
+    
+    printf("\n\n\n\nTOTAL ARRECADADO MES %d/%d                         R$ %.2f\n\n",vendas[0].mes, vendas[0].ano, faturamentoMes);
     pausa();
-    system("clear||cls");
 }
 
 void imprimir_vendas(VENDA vendas) { // IMPRIMIR VENDAS REALIZADAS
@@ -214,5 +205,14 @@ void imprimir_vendas(VENDA vendas) { // IMPRIMIR VENDAS REALIZADAS
             vendas.segundos, vendas.dia, vendas.mes, vendas.ano);
     printf("\nVALOR\t\t\tR$ %.2f\n\n", vendas.preco_venda);
     printf("__________________________________________________");
+}
+
+int posicao_venda(VENDA *vendas_realizadas, int quantidade_vendas, int codigo_venda){
+    for (int i = 0; i < quantidade_vendas; i++){
+        if (vendas_realizadas[i].codigoVenda == codigo_venda){
+            return i;
+        }
+    }
+    return -1;
 }
 //FIM VENDAS
